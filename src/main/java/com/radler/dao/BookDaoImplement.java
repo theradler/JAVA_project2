@@ -28,6 +28,7 @@ public class BookDaoImplement implements BookDao {
 	private SelectAllCategories findAllCategories; 
 	private FindAllByCategory findAllByCategory;
 	private InsertBook insertBook;
+	private UpdateBook updateBook;
 	
 	
 	static {
@@ -46,6 +47,7 @@ public class BookDaoImplement implements BookDao {
 		this.findAllCategories = new SelectAllCategories(dataSource); 
 		this.findAllByCategory = new FindAllByCategory(dataSource); 
 		this.insertBook = new InsertBook(dataSource); 
+		this.updateBook = new UpdateBook(dataSource);
 	}
 	
 	public DataSource getDataSource() {
@@ -82,7 +84,13 @@ public class BookDaoImplement implements BookDao {
 
 
 	public void updateBook(book book) {
-		// TODO Auto-generated method stub
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("category_id", book.getCategory_Id());
+		paramMap.put("isbn", book.getIsbn());
+		paramMap.put("title", book.getTitle()); 
+		paramMap.put("price", book.getPrice());
+		paramMap.put("id", book.getId());
+		updateBook.updateByNamedParam(paramMap); 
 		
 	}
 

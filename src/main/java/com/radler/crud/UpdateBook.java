@@ -12,7 +12,7 @@ import org.springframework.jdbc.object.SqlUpdate;
 public class UpdateBook extends SqlUpdate{
 	
 	private static final String SQL_UPDATE_BOOK = 
-			"update book set category_id=:category_id, isbn=:isbn, title=:title. price=:price where id=:id";
+			"update book set category_id=:category_id, isbn=:isbn, title=:title, price=:price where id=:id";
 	
 	public UpdateBook(DataSource dataSource) {
 		super(dataSource, SQL_UPDATE_BOOK);
