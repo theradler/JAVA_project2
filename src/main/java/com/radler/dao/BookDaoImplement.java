@@ -29,6 +29,7 @@ public class BookDaoImplement implements BookDao {
 	private FindAllByCategory findAllByCategory;
 	private InsertBook insertBook;
 	private UpdateBook updateBook;
+	private DeleteBook deleteBook;
 	
 	
 	static {
@@ -48,6 +49,7 @@ public class BookDaoImplement implements BookDao {
 		this.findAllByCategory = new FindAllByCategory(dataSource); 
 		this.insertBook = new InsertBook(dataSource); 
 		this.updateBook = new UpdateBook(dataSource);
+		this.deleteBook = new DeleteBook(dataSource);
 	}
 	
 	public DataSource getDataSource() {
@@ -96,7 +98,9 @@ public class BookDaoImplement implements BookDao {
 
 
 	public void deleteBook(book book) {
-		// TODO Auto-generated method stub
+		Map<String,Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", book.getId());
+		deleteBook.updateByNamedParam(paramMap);
 		
 	}
 
