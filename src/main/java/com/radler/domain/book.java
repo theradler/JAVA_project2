@@ -25,7 +25,7 @@ public class book implements Serializable {
 	@Column(name = "BOOK_ID")
 	private int id;
 	@Column(name = "CATEGORY_ID")
-	private category category;
+	private int category;
 	@Column(name = "ISBN")
 	private String isbn;
 	@Column(name = "TITLE")
@@ -38,6 +38,7 @@ public class book implements Serializable {
 				inverseJoinColumns=@JoinColumn(name="AUTHOR_ID")		
 			)
 	private author author;
+
 	
 	public double getPrice() {
 		return price;
@@ -59,7 +60,7 @@ public class book implements Serializable {
 	}
 	@ManyToOne
 	@JoinColumn(name="category")
-	public category getCategory() {
+	public int getCategory() {
 		return category;
 	}
 	public void setCategory(category category) {
@@ -80,4 +81,5 @@ public class book implements Serializable {
 	}
 
 
+	
 }
