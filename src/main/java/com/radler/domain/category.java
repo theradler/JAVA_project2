@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category")
 public class category extends AbstractEntity {
+	@Column(name="CATEGORY_ID")
 	private int id;
 	private String name;
 	

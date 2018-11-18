@@ -23,7 +23,8 @@ import java.util.Properties;
 @PropertySource("classpath:db/jdbc.properties")
 @ComponentScan(basePackages = {
 		"com.radler.app",
-		"com.radler.domain"
+		"com.radler.domain",
+		"com.radler.dao"
 		
 })
 @EnableTransactionManagement

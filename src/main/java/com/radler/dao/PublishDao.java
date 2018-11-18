@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.radler.domain.*;
 
-public interface PublisheDao {
+public interface PublishDao {
 
 	List<book> findAllBooksWithoutAuthorAndCategories();
 	List<book> findAllBooksWithAuthorAndCategory();

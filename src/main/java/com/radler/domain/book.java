@@ -12,11 +12,19 @@ import com.radler.domain.author;
 
 @Entity(name = "book")
 @Table(name = "book")
-public class book extends AbstractEntity {
+@NamedQueries({
+	@NamedQuery(name=book.findAllBooksWithoutAuthorAndCategories,
+				query="Select id, category, isbn, title, price FROM book "
+						)
+})
+public class book implements Serializable {
+	
+	public static final String findAllBooksWithoutAuthorAndCategories = "book.findAllBooksWithoutAuthorAndCategories";
 	
 	@Id
 	@Column(name = "BOOK_ID")
 	private int id;
+	@Column(name = "CATEGORY_ID")
 	private category category;
 	@Column(name = "ISBN")
 	private String isbn;
@@ -54,7 +62,7 @@ public class book extends AbstractEntity {
 	public category getCategory() {
 		return category;
 	}
-	public void setCategory_Id(category category) {
+	public void setCategory(category category) {
 		this.category = category;
 	}
 	public int getId() {
@@ -63,9 +71,7 @@ public class book extends AbstractEntity {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setCategory(category category) {
-		this.category = category;
-	}
+
 	public author getAuthor() {
 		return author;
 	}
