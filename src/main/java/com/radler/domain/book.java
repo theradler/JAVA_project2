@@ -10,35 +10,60 @@ import com.radler.domain.author;
 
 
 
-@Entity(name = "book")
+
+@Entity
 @Table(name = "book")
 @NamedQueries({
 	@NamedQuery(name=book.findAllBooksWithoutAuthorAndCategories,
-				query="Select id, category, isbn, title, price FROM book "
-						)
+				query="Select distinct b From book b"),
+	@NamedQuery(name=book.findAllBooksWithAuthorAndCategories,
+				 query="Select distinct b From book b "
+				 		+ "left join fetch b.category c "
+				 		+ "left join fetch b.author a"
+				 ),
+	@NamedQuery(name=book.findBookWithAuthorAndCategoryByBookId,
+				query="Select distinct b From book b "
+						+ "left join fetch b.category c "
+						+ "left join fetch b.author a "
+						+ "where b.id = :id"
+			)
+				 		
 })
-public class book implements Serializable {
+public class book extends AbstractEntity {
 	
 	public static final String findAllBooksWithoutAuthorAndCategories = "book.findAllBooksWithoutAuthorAndCategories";
 	
-	@Id
-	@Column(name = "BOOK_ID")
-	private int id;
-	@Column(name = "CATEGORY_ID")
-	private int category;
+	public static final String findAllBooksWithAuthorAndCategories = "book.findAllBooksWithAuthorAndCategories";
+	
+	public static final String findBookWithAuthorAndCategoryByBookId = "book.findBookWithAuthorAndCategoryByBookId";
+
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="CATEGORY_ID")
+	private category category;
 	@Column(name = "ISBN")
 	private String isbn;
 	@Column(name = "TITLE")
 	private String title;
 	@Column(name = "PRICE")
 	private double price;
-	@OneToOne
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="author_book",
 				joinColumns=@JoinColumn(name="BOOK_ID"),
 				inverseJoinColumns=@JoinColumn(name="AUTHOR_ID")		
 			)
-	private author author;
+	private Set<author> author = new HashSet<com.radler.domain.author>();
+	
+	public Set<author> getAuthor() {
+		return this.author;
+	}
 
+	public void setAuthor(Set<author> author) {
+		this.author = author;
+	}
+	
+	public void addAuthor(author author) {
+		this.author.add(author);
+	}
 	
 	public double getPrice() {
 		return price;
@@ -59,25 +84,17 @@ public class book implements Serializable {
 		this.isbn = isbn;
 	}
 	@ManyToOne
-	@JoinColumn(name="category")
-	public int getCategory() {
+	@JoinColumn(name="CATEGORY_ID")
+	public category getCategory() {
 		return category;
 	}
 	public void setCategory(category category) {
 		this.category = category;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 
-	public author getAuthor() {
-		return author;
-	}
-	public void setAuthor(author author) {
-		this.author = author;
+	@Override
+	public String toString() {
+		return String.format("ID: %d, CATEGORY_ID: %d,  ISBN: %s, Title: %s, Price: %s",this.id, this.category.getId(), this.isbn, this.title, this.price);
 	}
 
 

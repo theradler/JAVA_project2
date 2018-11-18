@@ -16,7 +16,7 @@ import com.radler.domain.book;
 @Table(name= "author")
 public class author extends AbstractEntity {
 
-	private int AUTHOR_ID;
+
 	private String FIRST_NAME;
 	private String LAST_NAME;
 	private String Description;
@@ -27,13 +27,7 @@ public class author extends AbstractEntity {
 			)
 	private Set<book> book;
 	
-	public int getAUTHOR_ID() {
-		return this.AUTHOR_ID;
-	}
-	
-	public void setAUTHOR_ID(int aUTHOR_ID) {
-		this.AUTHOR_ID = aUTHOR_ID;
-	}
+
 	public String getFIRST_NAME() {
 		return this.FIRST_NAME;
 	}
