@@ -49,7 +49,7 @@ public class book implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name="ID")
-	private int id;
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name="CATEGORY_ID")
@@ -106,11 +106,11 @@ public class book implements Serializable {
 		this.category = category;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

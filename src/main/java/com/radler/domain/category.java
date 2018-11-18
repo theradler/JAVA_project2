@@ -27,16 +27,16 @@ public class category implements Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "ID")
-	private int id;
+	private Long id;
 	
 	@Column(name="NAME")
 	private String name;
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	@OneToMany(mappedBy ="category")
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	}
 	

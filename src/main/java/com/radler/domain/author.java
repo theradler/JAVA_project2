@@ -22,7 +22,7 @@ import com.radler.domain.book;
 public class author implements Serializable {
 	@Id
 	@GeneratedValue(strategy= IDENTITY)
-	private int id;
+	private Long id;
 	@Column(name="FIRST_NAME")
 	private String FIRST_NAME;
 	@Column(name="LAST_NAME")

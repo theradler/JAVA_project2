@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.radler.part3</groupId>
-  <artifactId>part2-3</artifactId>
+  <groupId>com.radler.part4</groupId>
+  <artifactId>part2-4</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>part2-1</name>
@@ -17,6 +17,8 @@
     <mysql.client.version>5.1.29</mysql.client.version>
 	<hibernate.entitymanager.version>5.2.12.Final</hibernate.entitymanager.version>
 	<spring.orm.version>5.0.2.RELEASE</spring.orm.version>
+		<spring.data.jpa.version>2.0.2.RELEASE</spring.data.jpa.version>
+	<google.guava.version>19.0</google.guava.version>
   </properties>
   <dependencies>
       <dependency>
@@ -79,6 +81,17 @@
     <artifactId>log4j-over-slf4j</artifactId>
     <version>1.7.21</version>
 </dependency>
+     <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>${google.guava.version}</version>
+      </dependency>
+<dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-jpa</artifactId>
+          <version>${spring.data.jpa.version}</version>
+      </dependency>
+      
   </dependencies>
   
 
