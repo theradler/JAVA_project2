@@ -1,16 +1,35 @@
 package com.radler.domain;
 import java.io.Serializable; 
+import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import com.radler.domain.category;
+import com.radler.domain.author;
 
 
 
-
-public class book implements Serializable {
+@Entity(name = "book")
+@Table(name = "book")
+public class book extends AbstractEntity {
 	
+	@Id
+	@Column(name = "BOOK_ID")
 	private int id;
-	private int Category_Id;
+	private category category;
+	@Column(name = "ISBN")
 	private String isbn;
+	@Column(name = "TITLE")
 	private String title;
+	@Column(name = "PRICE")
 	private double price;
+	@OneToOne
+	@JoinTable(name="author_book",
+				joinColumns=@JoinColumn(name="BOOK_ID"),
+				inverseJoinColumns=@JoinColumn(name="AUTHOR_ID")		
+			)
+	private author author;
 	
 	public double getPrice() {
 		return price;
@@ -30,11 +49,13 @@ public class book implements Serializable {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public int getCategory_Id() {
-		return Category_Id;
+	@ManyToOne
+	@JoinColumn(name="category")
+	public category getCategory() {
+		return category;
 	}
-	public void setCategory_Id(int category_Id) {
-		Category_Id = category_Id;
+	public void setCategory_Id(category category) {
+		this.category = category;
 	}
 	public int getId() {
 		return id;
@@ -42,5 +63,15 @@ public class book implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setCategory(category category) {
+		this.category = category;
+	}
+	public author getAuthor() {
+		return author;
+	}
+	public void setAuthor(author author) {
+		this.author = author;
+	}
+
 
 }

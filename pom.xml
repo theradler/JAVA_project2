@@ -1,22 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.radler.part1</groupId>
-  <artifactId>part2-1</artifactId>
+  <groupId>com.radler.part2</groupId>
+  <artifactId>part2-2</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>part2-1</name>
   <url>http://maven.apache.org</url>
   
-    <properties>
+  <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring.version>5.0.2.RELEASE</spring.version>
+    <junit.version>4.12</junit.version>
     <slf4j.log4j.version>1.7.6</slf4j.log4j.version>
-    <dbcp.version>1.4</dbcp.version>
+    <commons.dbcp2.version>2.2.0</commons.dbcp2.version>
     <mysql.client.version>5.1.29</mysql.client.version>
-	<commons.dbcp2.version>2.2.0</commons.dbcp2.version>
+	<hibernate.entitymanager.version>5.2.12.Final</hibernate.entitymanager.version>
+	<spring.orm.version>5.0.2.RELEASE</spring.orm.version>
   </properties>
-  
   <dependencies>
       <dependency>
           <groupId>org.springframework</groupId>
@@ -29,34 +30,42 @@
           <version>${spring.version}</version>
       </dependency>
       <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>${junit.version}</version>
+      </dependency>
+      <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-log4j12</artifactId>
           <version>${slf4j.log4j.version}</version>
        </dependency>
       <dependency>
-          <groupId>commons-dbcp</groupId>
-          <artifactId>commons-dbcp</artifactId>
-          <version>${dbcp.version}</version>
-      </dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-dbcp2</artifactId>
+		<version>${commons.dbcp2.version}</version>
+	  </dependency>
       <dependency>
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <version>${mysql.client.version}</version>
       </dependency>
 	  <dependency>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-dbcp2</artifactId>
-		<version>${commons.dbcp2.version}</version>
+      	<groupId>org.hibernate</groupId>
+         <artifactId>hibernate-entitymanager</artifactId>
+         <version>${hibernate.entitymanager.version}</version>
+      </dependency>
+      <dependency>
+      	<groupId>org.springframework</groupId>
+    	<artifactId>spring-orm</artifactId>
+    	<version>${spring.orm.version}</version>
 	  </dependency>
 	  <dependency>
-  	<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.12</version>
-</dependency>
-<dependency>
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>mssql-jdbc</artifactId>
     <version>7.0.0.jre8</version>
 </dependency>
   </dependencies>
+  
+
+
 </project>
