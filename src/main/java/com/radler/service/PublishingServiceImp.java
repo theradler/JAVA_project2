@@ -24,7 +24,9 @@ public class PublishingServiceImp implements PublishingService {
 	
 	private static final Logger logger = LogManager.getLogger(PublishingServiceImp.class.getName());
 	
-	final static String ALL_BOOK_NATIVE_QUERY = "select id, category_id, isbn, title, price from book";
+	final static  String ALL_BOOK_NATIVE_QUERY = "select id, category_id, isbn, title, price from book";
+	
+	
 	
 	@PersistenceContext
 	private EntityManager em; 
@@ -58,7 +60,10 @@ public class PublishingServiceImp implements PublishingService {
 	}
 
 	public void deleteBook(book book) {
-		// TODO Auto-generated method stub
+		logger.info(book.getId());
+		book mergeContact = em.merge(book);
+		em.remove(mergeContact);
+		logger.info("Book with Id: " + book.getId() + " removed from db"); 
 		
 	}
 

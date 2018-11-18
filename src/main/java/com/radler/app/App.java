@@ -42,7 +42,9 @@ public class App
     	newBook.addAuthor(newAuthor);
     	newBook.setCategory(pubServ.getCategoryById(1));
 
-    	pubServ.save(newBook);
+    	//pubServ.save(newBook);
+    	newBook = pubServ.findBookWithAuthorAndCategoryById(15);
+    	pubServ.deleteBook(newBook);
 
     }
 }
