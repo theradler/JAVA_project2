@@ -1,40 +1,48 @@
 package com.radler.app;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
-import com.radler.dao.PublishDao;
-import com.radler.config.AppConfig;
+
 
 
 import com.radler.domain.book; 
 import com.radler.domain.category;
 import com.radler.domain.author;
+import com.radler.service.PublishingService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 
 public class App 
 {
+	private static final Logger logger = LogManager.getLogger(App.class.getName());
     public static void main( String[] args )
     {
+    	GenericXmlApplicationContext context = new GenericXmlApplicationContext();
+    	context.load("classpath:spring/app-context.xml");
+    	context.refresh();
+    	PublishingService pubServ = context.getBean(PublishingService.class);
+    	logger.info("Hello World!");
+    	logger.info(pubServ.findAllBooksByNativeQuery());
+    	logger.info(pubServ.findAllBooks());
+    	logger.info(pubServ.findAllBooksWithAuthorAndCategory());
+    	logger.info(pubServ.findBookWithAuthorAndCategoryById(1));
+    	logger.info(pubServ.findAllBookByAuthorId(1));
     	
-    	GenericApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class); 
-    	PublishDao publishDao = context.getBean(PublishDao.class);
-    	System.out.println(publishDao.findAllBooksWithoutAuthorAndCategories());
-    	System.out.println(publishDao.findAllBooksWithAuthorAndCategories());
-    	System.out.println(publishDao.findBookWithAuthorAndCategoryByBookId(1));
-    	
+    	//Insert New Book
     	book newBook = new book();
-    	newBook.setIsbn("12345");
-    	newBook.setTitle("Spooky House 2");
-    	newBook.setPrice(12.99);
-    	//category newCategory = new category();
-    	//newCategory.setName("JAVA");
-    	category cat = publishDao.getCategoryById(1); 
-    	newBook.setCategory(cat);
+    	newBook.setIsbn("2345235325");
+    	newBook.setTitle("Fantasia");
+    	newBook.setPrice(12.87);
+    	
     	author newAuthor = new author();
-    	newAuthor.setFIRST_NAME("Greg");
-    	newAuthor.setLAST_NAME("Greggerson");
-    	newAuthor.setDescription("Its new old Greg");
+    	newAuthor.setFIRST_NAME("Jim");
+    	newAuthor.setLAST_NAME("Jimmerson");
+    	newAuthor.setDescription("Hey its that guy");
+    	
     	newBook.addAuthor(newAuthor);
-    	publishDao.addBook(newBook);
-        System.out.println( "Hello World!" );
+    	newBook.setCategory(pubServ.getCategoryById(1));
+
+    	pubServ.save(newBook);
+
     }
 }

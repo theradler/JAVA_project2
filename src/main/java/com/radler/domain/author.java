@@ -1,9 +1,14 @@
 package com.radler.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -14,11 +19,15 @@ import javax.persistence.Table;
 import com.radler.domain.book;
 @Entity
 @Table(name= "author")
-public class author extends AbstractEntity {
-
-
+public class author implements Serializable {
+	@Id
+	@GeneratedValue(strategy= IDENTITY)
+	private int id;
+	@Column(name="FIRST_NAME")
 	private String FIRST_NAME;
+	@Column(name="LAST_NAME")
 	private String LAST_NAME;
+	@Column(name="Description")
 	private String Description;
 	@OneToMany
 	@JoinTable(name="author_book",

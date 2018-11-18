@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.radler.part2</groupId>
-  <artifactId>part2-2</artifactId>
+  <groupId>com.radler.part3</groupId>
+  <artifactId>part2-3</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>part2-1</name>
@@ -34,12 +34,7 @@
           <artifactId>junit</artifactId>
           <version>${junit.version}</version>
       </dependency>
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-          <version>${slf4j.log4j.version}</version>
-       </dependency>
-      <dependency>
+         <dependency>
 		<groupId>org.apache.commons</groupId>
 		<artifactId>commons-dbcp2</artifactId>
 		<version>${commons.dbcp2.version}</version>
@@ -63,6 +58,26 @@
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>mssql-jdbc</artifactId>
     <version>7.0.0.jre8</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-api</artifactId>
+    <version>2.7</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.7</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j-impl</artifactId>
+    <version>2.7</version>
+</dependency>
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>log4j-over-slf4j</artifactId>
+    <version>1.7.21</version>
 </dependency>
   </dependencies>
   

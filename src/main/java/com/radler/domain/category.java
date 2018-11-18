@@ -8,8 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table; 
+import static javax.persistence.GenerationType.IDENTITY;
+
 
 
 @Entity
@@ -19,9 +20,14 @@ import javax.persistence.Table;
 				query="Select distinct c From category c where c.id = :id"),
 				 		
 })
-public class category extends AbstractEntity {
+public class category implements Serializable {
 
 	public static final String getCategoryById = "category.getCategoryById";
+	
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "ID")
+	private int id;
 	
 	@Column(name="NAME")
 	private String name;
